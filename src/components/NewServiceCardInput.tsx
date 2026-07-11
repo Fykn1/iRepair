@@ -25,12 +25,12 @@ export function NewServiceCardInput({ onSalvar }: NewServiceCardInputProps) {
   return (
     <div className="bg-gray-300 h-36 w-72 border-3 rounded-2xl border-gray-500 grid grid-rows-4">
       <input 
-        type="text" placeholder="Nome" className="border" 
+        type="text" placeholder="Nome do Cliente" className="border" 
         value={nome} 
         onChange={(e) => setNome(e.target.value)}>
       </input>
       <input 
-        type="text" placeholder="Modelo" className="border"
+        type="text" placeholder="Modelo do Aparelho" className="border"
         value={modelo}
         onChange={(e) => setModelo(e.target.value)}>
       </input>
