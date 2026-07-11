@@ -19,7 +19,8 @@ export function App() {
     };
 
     setListaOS([...listaOS, novaOS])
-  }  
+  }
+
   return (
     <>
       <Header />
