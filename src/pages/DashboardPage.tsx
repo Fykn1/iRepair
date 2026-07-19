@@ -19,7 +19,7 @@ const DashboardPage = () => {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await api.get('/api/service-orders');
+        const response = await api.get('/service-orders');
         setServices(response.data);
       } catch (e) {
         console.error(e);

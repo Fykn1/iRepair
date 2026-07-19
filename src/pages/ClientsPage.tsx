@@ -18,7 +18,7 @@ const ClientsPage = () => {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await api.get('/api/clients');
+        const response = await api.get('/clients');
         setClients(response.data);
       } catch (e) {
         setError('Não foi possível carregar os clientes.');
