@@ -11,3 +11,40 @@ generator client {
 datasource db {
   provider = "mysql"
 }
+
+model User {
+  id         String     @id @default(uuid())
+  email      String     @unique
+  password   String
+  createdAt  DateTime   @default(now())   @map("created_at")
+  serviceOrders ServiceOrder[]
+
+  @@map("users")
+}
+
+model Client {
+  id         String     @id @default(uuid())
+  name       String
+  phone      String     @unique
+  email      String     @unique
+  createdAt  DateTime   @default(now())   @map("created_at")
+  serviceOrders ServiceOrder[]
+
+  @@map("clients")
+}
+
+model ServiceOrder {
+  id         Int        @id @default(autoincrement())
+  device     String
+  issue      String
+  status     Boolean
+  createdAt  DateTime   @default(now())   @map("created_at")
+  
+  userId     String     @map("user_id")
+  user       User       @relation(fields: [userId], references: [id])
+
+  clientId   String     @map("client_id")
+  client     Client     @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@map("service_orders")
+}
