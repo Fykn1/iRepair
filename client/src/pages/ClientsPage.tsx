@@ -3,7 +3,7 @@ import { api } from '../services/api';
 import ClientCard from '../components/ClientCard';
 
 interface Client {
-  id: number,
+  id: string,
   name: string,
   phone: string,
   email: string,
