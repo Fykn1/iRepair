@@ -24,6 +24,7 @@ class UserService {
         id: true,
         email: true,
         createdAt: true,
+        serviceOrders: true
       }
     });
   }
@@ -35,6 +36,7 @@ class UserService {
         id: true,
         email: true,
         createdAt: true,
+        serviceOrders: true
       }
     });
 

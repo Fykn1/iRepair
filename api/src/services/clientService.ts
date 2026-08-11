@@ -27,6 +27,7 @@ class ClientService {
         name: true,
         phone: true,
         createdAt: true,
+        serviceOrders: true
       }
     });
   }
@@ -40,6 +41,7 @@ class ClientService {
         name: true,
         phone: true,
         createdAt: true,
+        serviceOrders: true
       }
     });
 
