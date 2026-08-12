@@ -1,5 +1,5 @@
-import { prisma } from '../config/prismaClient';
-import type { Client } from '../models/clientModel';
+import { prisma } from '../../config/prismaClient';
+import type { Client } from './client.model';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/client';
 
 class ClientService {
