@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { ServiceOrderController } from '../controllers/serviceOrderController';
+import { ServiceOrderController } from './serviceOrder.controller';
   
 const serviceOrderRoutes = Router(); 
 const controller = new ServiceOrderController();

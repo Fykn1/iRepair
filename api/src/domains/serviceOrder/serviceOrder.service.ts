@@ -1,5 +1,5 @@
-import { prisma } from '../config/prismaClient';
-import type { ServiceOrder } from '../models/serviceOrderModel';
+import { prisma } from '../../config/prismaClient';
+import type { ServiceOrder } from './serviceOrder.model';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/client';
 
 class ServiceOrderService {

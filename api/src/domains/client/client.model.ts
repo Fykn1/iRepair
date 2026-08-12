@@ -1,4 +1,4 @@
-import type { ServiceOrder } from "../../models/serviceOrderModel";
+import type { ServiceOrder } from "../serviceOrder/serviceOrder.model";
 
 export interface Client {
   id: string;

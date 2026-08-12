@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express';
-import {  ServiceOrderService } from '../services/serviceOrderService';
+import {  ServiceOrderService } from './serviceOrder.service';
 
 const service = new ServiceOrderService();
 

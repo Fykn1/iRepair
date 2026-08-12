@@ -1,5 +1,5 @@
-import type { Client } from './clientModel';
-import type { User } from './userModel';
+import type { Client } from '../client/client.model';
+import type { User } from '../user/user.model';
 
 export interface ServiceOrder {
   id: number;
