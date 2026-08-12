@@ -1,48 +1,33 @@
 import { useEffect, useState } from 'react';
-import { api } from '../services/api';
-
-interface Service {
-  id: number,
-  client_id: number,
-  device: string,
-  issue: string,
-  status: boolean,
-  created_at: string
-}
+import { getAllServiceOrders, deleteServiceOrder } from '../services/serviceOrderService';
+import type { ServiceOrder } from '../types';
 
 const ServiceOrdersPage = () => {
-  const [services, setServices] = useState<Service[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [serviceOrders, setServiceOrders] = useState<ServiceOrder[]>([]);
 
   useEffect(() => {
-    async function fetchServiceOrders() {
-      try {
-        const response = await api.get('/service-orders');
-        setServices(response.data);
-      } catch (e) {
-        setError('Não foi possível carregar as ordens de serviço.');
-      } finally {
-        setIsLoading(false);
-      }
+    async function load() {
+      const data = await getAllServiceOrders();
+      setServiceOrders(data);
     }
-
-    fetchServiceOrders();
+    load();
   }, []);
 
-  if (isLoading) return <p>Carregando...</p>;
-  if (error) return <p className="text-red-500">{error}</p>;
+  async function handleDelete(id: number) {
+    await deleteServiceOrder(id);
+    setServiceOrders(prev => prev.filter(so => so.id !== id));
+  }
 
   return (
-    <>
-      <p>OS Page</p>
-      <ul>
-        {services.map(service => (
-          <li key={service.id}>{service.id}|{service.client_id}|{service.device}|{service.issue}|{service.status}|{service.created_at}</li>
-        ))}
-      </ul>
-    </>
+    <ul>
+      {serviceOrders.map(serviceOrder => (
+        <li key={serviceOrder.id}>
+          {serviceOrder.device} - {serviceOrder.issue} - {serviceOrder.status}
+          <button onClick={() => handleDelete(serviceOrder.id)}>Excluir</button>
+        </li>
+      ))}
+    </ul>
   );
 };
 
-export default ServiceOrdersPage
+export default ServiceOrdersPage;
