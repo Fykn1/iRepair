@@ -5,8 +5,6 @@ import type { SignOptions } from 'jsonwebtoken'
 interface TokenPayload {
   id: string
   email: string
-  iat: number
-  exp: number
 }
 
 export function generateToken(payload: TokenPayload): string {
