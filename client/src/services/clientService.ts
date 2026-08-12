@@ -11,6 +11,6 @@ export async function createClient(data: CreateClientData): Promise<Client> {
   return response.data;
 }
 
-export async function deleteClient(id: number): Promise<void> {
+export async function deleteClient(id: string): Promise<void> {
   await api.delete(`/clients/${id}`);
 }
