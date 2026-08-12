@@ -1,51 +1,32 @@
 import { useEffect, useState } from 'react';
-import { api } from '../services/api';
-import ClientCard from '../components/ClientCard';
-
-interface Client {
-  id: string,
-  name: string,
-  phone: string,
-  email: string,
-  created_at: string
-}
+import { getAllClients, deleteClient } from '../services/clientService';
+import type { Client } from '../types';
 
 const ClientsPage = () => {
   const [clients, setClients] = useState<Client[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetchProducts() {
-      try {
-        const response = await api.get('/clients');
-        setClients(response.data);
-      } catch (e) {
-        setError('Não foi possível carregar os clientes.');
-      } finally {
-        setIsLoading(false);
-      }
+    async function load() {
+      const data = await getAllClients();
+      setClients(data);
     }
-
-    fetchProducts();
+    load();
   }, []);
 
-  if (isLoading) return <p>Carregando...</p>;
-  if (error) return <p className="text-red-500">{error}</p>;
+  async function handleDelete(id: string) {
+    await deleteClient(id);
+    setClients(prev => prev.filter(c => c.id !== id));
+  }
 
   return (
-    <>
-      <p>Client Page</p>
-      {clients.map((client) => (
-        <ClientCard
-          id={client.id}
-          name={client.name}
-          phone={client.phone}
-          email={client.email}
-          created_at={client.created_at}
-        />
+    <ul>
+      {clients.map(client => (
+        <li key={client.id}>
+          {client.name}
+          <button onClick={() => handleDelete(client.id)}>Excluir</button>
+        </li>
       ))}
-    </>
+    </ul>
   );
 };
 
