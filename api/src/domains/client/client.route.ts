@@ -4,10 +4,10 @@ import { ClientController } from './client.controller';
 const clientRoutes = Router(); 
 const controller = new ClientController();
 
-clientRoutes.post('/clients', controller.create);
-clientRoutes.get('/clients', controller.getAll);
-clientRoutes.get('/clients/:id', controller.getById);
-clientRoutes.put('/clients/:id', controller.update);
-clientRoutes.delete('/clients/:id', controller.delete);
+clientRoutes.post('/', controller.create);
+clientRoutes.get('/', controller.getAll);
+clientRoutes.get('/:id', controller.getById);
+clientRoutes.put('/:id', controller.update);
+clientRoutes.delete('/:id', controller.delete);
 
 export { clientRoutes };
