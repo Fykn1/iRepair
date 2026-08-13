@@ -1,4 +1,5 @@
 import { Link } from 'react-router';
+import LogoutButton from './LogoutButton';
 
 const Header = () => {
   return (
@@ -10,6 +11,7 @@ const Header = () => {
           <Link to="/" className="border-2 m-0.5 p-0.5">Dashboard</Link>
           <Link to="/clients" className="border-2 m-0.5 p-0.5">Clientes</Link>
           <Link to="/service-orders" className="border-2 m-0.5 p-0.5">Ordens de Serviço</Link>
+          <LogoutButton />
         </nav>
       </div>
     </header>
