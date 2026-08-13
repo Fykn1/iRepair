@@ -2,7 +2,7 @@ import { useState } from "react";
 
 interface ServiceCardProps {
   id: number,
-  client_id: number,
+  client_id: string,
   device: string,
   issue: string,
   status: boolean,

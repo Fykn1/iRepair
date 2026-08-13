@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getAllClients, deleteClient } from '../services/clientService';
+import ClientCard from '../components/ClientCard';
 import type { Client } from '../types';
 
 const ClientsPage = () => {
@@ -19,14 +20,19 @@ const ClientsPage = () => {
   }
 
   return (
-    <ul>
-      {clients.map(client => (
-        <li key={client.id}>
-          {client.name}
-          <button onClick={() => handleDelete(client.id)}>Excluir</button>
-        </li>
+    <>
+      <p>Dashboard</p>
+      {clients.map((client) => (
+        <ClientCard
+          id={client.id}
+          name={client.name}
+          phone={client.phone}
+          email={client.email}
+          created_at={client.created_at}
+          onDelete={handleDelete}
+        />
       ))}
-    </ul>
+    </>
   );
 };
 

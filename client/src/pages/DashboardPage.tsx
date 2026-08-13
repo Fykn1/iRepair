@@ -4,7 +4,7 @@ import ServiceCard from '../components/ServiceCard';
 
 interface Service {
   id: number,
-  client_id: number,
+  client_id: string,
   device: string,
   issue: string,
   status: boolean,
