@@ -1,24 +1,30 @@
-import { BrowserRouter, Routes, Route } from 'react-router';
-import DashboardPage from './pages/DashboardPage';
-import ClientsPage from './pages/ClientsPage';
-import ServiceOrdersPage from './pages/ServiceOrdersPage';
-import MainLayout from "./components/MainLayout";
+import { BrowserRouter, Routes, Route } from 'react-router'
+import { AuthProvider } from './contexts/AuthContext'
+import { PrivateRoute } from './routes/PrivateRoute'
+import MainLayout from './components/MainLayout'
+import Login from './pages/LoginPage'
+import DashboardPage from './pages/DashboardPage'
+import ClientsPage from './pages/ClientsPage'
+import ServiceOrdersPage from './pages/ServiceOrdersPage'
 
 const App = () => {
-
   return (
-    <>
-      <BrowserRouter>
+    <BrowserRouter>
+      <AuthProvider>
         <Routes>
-          <Route element={<MainLayout />}>
-            <Route path="/" element={<DashboardPage />} />
-            <Route path="/clients" element={<ClientsPage />} />
-            <Route path="/service-orders" element={<ServiceOrdersPage />} />
+          <Route path="/login" element={<Login />} />
+
+          <Route element={<PrivateRoute />}>
+            <Route element={<MainLayout />}>
+              <Route path="/" element={<DashboardPage />} />
+              <Route path="/clients" element={<ClientsPage />} />
+              <Route path="/service-orders" element={<ServiceOrdersPage />} />
+            </Route>
           </Route>
         </Routes>
-      </BrowserRouter>
-    </>
+      </AuthProvider>
+    </BrowserRouter>
   )
 }
 
-export default App;
+export default App
